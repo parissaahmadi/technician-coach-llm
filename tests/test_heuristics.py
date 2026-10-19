@@ -1,6 +1,6 @@
 import pytest
-from helpers import kb
 
+from helpers import kb
 from technician_coach import cases as cases_mod
 from technician_coach import coach, heuristics
 from technician_coach.session import Session

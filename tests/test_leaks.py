@@ -5,8 +5,8 @@ import io
 import json
 
 import pytest
-from helpers import CANARY, RecordingLLM, ScriptedLLM, canary_cases, service, walk_keys
 
+from helpers import CANARY, RecordingLLM, ScriptedLLM, canary_cases, service, walk_keys
 from technician_coach import cli, coach, prompts
 from technician_coach.errors import Forbidden
 

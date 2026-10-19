@@ -1,5 +1,4 @@
 from helpers import ScriptedLLM, service
-
 from technician_coach.errors import LLMUnavailable
 from technician_coach.llm import MockLLM
 

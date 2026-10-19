@@ -1,8 +1,8 @@
 import copy
 
 import pytest
-from helpers import kb, raw
 
+from helpers import kb, raw
 from technician_coach import cases as cases_mod
 from technician_coach import kb as kb_mod
 from technician_coach.errors import Invalid, NotFound

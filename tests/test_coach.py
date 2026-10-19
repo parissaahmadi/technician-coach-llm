@@ -1,8 +1,8 @@
 import json
 
 import pytest
-from helpers import RecordingLLM, ScriptedLLM, kb
 
+from helpers import RecordingLLM, ScriptedLLM, kb
 from technician_coach import cases as cases_mod
 from technician_coach import coach, prompts
 from technician_coach.errors import LLMBadRequest, LLMBadResponse, LLMUnavailable

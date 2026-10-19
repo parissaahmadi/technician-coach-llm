@@ -1,7 +1,6 @@
 from dataclasses import replace
 
 from helpers import kb
-
 from technician_coach import cases as cases_mod
 from technician_coach.scoring import score_session
 from technician_coach.session import Session

@@ -2,8 +2,8 @@ import json
 import socket
 
 import pytest
-from fake_server import FakeAPI, ok
 
+from fake_server import FakeAPI, ok
 from technician_coach.errors import LLMBadRequest, LLMBadResponse, LLMUnavailable
 from technician_coach.llm import API_VERSION, AnthropicHTTP, MockLLM
 

@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import json
 import random
-import socket
 import time
 import urllib.error
 import urllib.parse
@@ -106,7 +105,7 @@ class AnthropicHTTP:
             retry_after = None
             try:
                 status, headers, body = self._post(payload)
-            except (urllib.error.URLError, TimeoutError, socket.timeout, ConnectionError, OSError) as e:
+            except (urllib.error.URLError, TimeoutError, ConnectionError, OSError) as e:
                 last = f"network error: {type(e).__name__}"
             else:
                 if status == 200:
