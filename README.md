@@ -1,4 +1,4 @@
-![ci](https://github.com/<USERNAME>/technician-coach-llm/actions/workflows/ci.yml/badge.svg)
+![ci](https://github.com/parissaahmadi/technician-coach-llm/actions/workflows/ci.yml/badge.svg)
 
 # technician-coach-llm
 
