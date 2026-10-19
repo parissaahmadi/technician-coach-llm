@@ -1,0 +1,191 @@
+{
+ "cases": [
+  {
+   "id": "CASE-001",
+   "title": "Compressor C-1 overheats under load",
+   "asset": {
+    "id": "AST-0001",
+    "name": "Screw compressor C-1"
+   },
+   "asset_type": "compressor",
+   "fault": "high_oil_temp",
+   "symptom": "The compressor trips on high oil temperature (105 °C) after about 40 minutes at full load. It runs normally at part load.",
+   "root_cause": "clogged_cooler",
+   "observations": {
+    "cooler_fins": {
+     "result": "abnormal",
+     "reading": "Fins about 70 % blocked with dust and fibres."
+    },
+    "oil_level": {
+     "result": "normal",
+     "reading": "Level at three quarters of the glass."
+    },
+    "oil_filter_dp": {
+     "result": "normal",
+     "reading": "0.6 bar, within the limit."
+    },
+    "fan_motor": {
+     "result": "normal",
+     "reading": "Fan turns the right way; current normal."
+    },
+    "thermostatic_valve": {
+     "result": "normal",
+     "reading": "Opens at 72 °C as specified."
+    }
+   },
+   "supervisor": {
+    "rubric": "Expect the technician to check the cheap items (oil level, filter, fan) before opening the cooler, and to apply lockout before the cooler guard is opened. CANARY-RUBRIC-001",
+    "notes": "Common mistake: ordering a new thermostatic valve (about 9,500,000 rials) before looking at the cooler. CANARY-NOTES-001",
+    "cost_per_hour_rials": 42000000
+   }
+  },
+  {
+   "id": "CASE-002",
+   "title": "Compressor C-1 overheats, cooler is clean",
+   "asset": {
+    "id": "AST-0001",
+    "name": "Screw compressor C-1"
+   },
+   "asset_type": "compressor",
+   "fault": "high_oil_temp",
+   "symptom": "High oil temperature again after a cooler cleaning last week. The temperature rises quickly after start-up.",
+   "root_cause": "stuck_thermostatic_valve",
+   "observations": {
+    "thermostatic_valve": {
+     "result": "abnormal",
+     "reading": "Valve stays closed past 85 °C in the water bath."
+    },
+    "cooler_fins": {
+     "result": "normal",
+     "reading": "Fins clean after last week's cleaning."
+    },
+    "fan_motor": {
+     "result": "normal",
+     "reading": "Fan and current normal."
+    },
+    "oil_level": {
+     "result": "normal",
+     "reading": "Level correct."
+    },
+    "oil_filter_dp": {
+     "result": "normal",
+     "reading": "0.5 bar, within the limit."
+    }
+   },
+   "supervisor": {
+    "rubric": "The cooler was cleaned last week, so a good technician does not reopen it. Valve test needs lockout. CANARY-RUBRIC-002",
+    "notes": "The thermostatic element is a known weak part on this model. CANARY-NOTES-002",
+    "cost_per_hour_rials": 42000000
+   }
+  },
+  {
+   "id": "CASE-003",
+   "title": "Compressor C-2 cannot hold pressure",
+   "asset": {
+    "id": "AST-0002",
+    "name": "Screw compressor C-2"
+   },
+   "asset_type": "compressor",
+   "fault": "low_output_pressure",
+   "symptom": "Output pressure falls to 5.8 bar under load; the setpoint is 7.5 bar. The machine runs loaded all the time.",
+   "root_cause": "clogged_separator",
+   "observations": {
+    "separator_dp": {
+     "result": "abnormal",
+     "reading": "1.4 bar; the limit is 0.8 bar."
+    },
+    "intake_filter": {
+     "result": "normal",
+     "reading": "Indicator green."
+    },
+    "inlet_valve": {
+     "result": "normal",
+     "reading": "Opens fully at load."
+    },
+    "leak_check": {
+     "result": "normal",
+     "reading": "No leaks found downstream."
+    }
+   },
+   "supervisor": {
+    "rubric": "Two quick gauge readings (intake, separator) should come before the 15-minute leak check. CANARY-RUBRIC-003",
+    "notes": "Separator replacement costs about 18,600,000 rials; do not authorise it without the pressure-drop reading. CANARY-NOTES-003",
+    "cost_per_hour_rials": 28000000
+   }
+  },
+  {
+   "id": "CASE-004",
+   "title": "Pump PU-21 delivers too little",
+   "asset": {
+    "id": "AST-0009",
+    "name": "Centrifugal pump PU-21"
+   },
+   "asset_type": "pump",
+   "fault": "low_flow",
+   "symptom": "Flow is about 60 % of normal. The motor sounds normal and the discharge pressure is slightly high.",
+   "root_cause": "clogged_strainer",
+   "observations": {
+    "strainer": {
+     "result": "abnormal",
+     "reading": "Basket packed with scale and rubber fragments."
+    },
+    "suction_valve": {
+     "result": "normal",
+     "reading": "Fully open."
+    },
+    "motor_rotation": {
+     "result": "normal",
+     "reading": "Correct direction; current normal."
+    },
+    "impeller_inspect": {
+     "result": "normal",
+     "reading": "Impeller and wear ring in good condition."
+    }
+   },
+   "supervisor": {
+    "rubric": "Strainer needs lockout and draining. Opening the casing for the impeller first is a 45-minute detour. CANARY-RUBRIC-004",
+    "notes": "The rubber fragments point to a failing hose upstream; raise a work order. CANARY-NOTES-004",
+    "cost_per_hour_rials": 15000000
+   }
+  },
+  {
+   "id": "CASE-005",
+   "title": "Press P-10 ram is slow",
+   "asset": {
+    "id": "AST-0003",
+    "name": "Hydraulic press P-10"
+   },
+   "asset_type": "press",
+   "fault": "slow_ram",
+   "symptom": "The ram takes twice as long to close as last month. No leaks are visible.",
+   "root_cause": "clogged_return_filter",
+   "observations": {
+    "return_filter": {
+     "result": "abnormal",
+     "reading": "Indicator in the red zone."
+    },
+    "tank_level": {
+     "result": "normal",
+     "reading": "Level normal."
+    },
+    "pump_pressure": {
+     "result": "normal",
+     "reading": "Reaches the relief setting."
+    },
+    "relief_valve": {
+     "result": "normal",
+     "reading": "Opens at the correct pressure."
+    },
+    "cylinder_seal": {
+     "result": "normal",
+     "reading": "No drift under load."
+    }
+   },
+   "supervisor": {
+    "rubric": "Tank level, filter indicator and pump pressure are all quick, non-isolating checks and come first. CANARY-RUBRIC-005",
+    "notes": "The filter is overdue by 600 operating hours. CANARY-NOTES-005",
+    "cost_per_hour_rials": 60000000
+   }
+  }
+ ]
+}
