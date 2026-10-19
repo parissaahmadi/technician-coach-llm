@@ -74,7 +74,10 @@ def parse_cases(data: dict, kb: KnowledgeBase) -> dict[str, Case]:
             if o["result"] not in ("normal", "abnormal"):
                 raise Invalid(f"{cid}.observations.{k}: result must be normal or abnormal")
             obs[k] = Observation(o["result"], o["reading"])
-        case_obs = lambda k: obs.get(k, NOTHING_UNUSUAL)  # noqa: E731
+
+        def case_obs(k, _obs=obs):
+            return _obs.get(k, NOTHING_UNUSUAL)  # noqa: E731
+
         for k in root.defining:
             if case_obs(k).result != "abnormal":
                 raise Invalid(f"{cid}: defining check {k!r} of the root cause must be abnormal")
@@ -103,8 +106,11 @@ def parse_cases(data: dict, kb: KnowledgeBase) -> dict[str, Case]:
 
 def load_cases(kb: KnowledgeBase, path: str | Path | None = None) -> dict[str, Case]:
     if path is None:
-        text = resources.files("technician_coach").joinpath("data/cases.json").read_text(
-            encoding="utf-8")
+        text = (
+            resources.files("technician_coach")
+            .joinpath("data/cases.json")
+            .read_text(encoding="utf-8")
+        )
     else:
         text = Path(path).read_text(encoding="utf-8")
     return parse_cases(json.loads(text), kb)

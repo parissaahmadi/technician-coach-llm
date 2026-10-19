@@ -47,7 +47,7 @@ def _describe(chk: dict) -> str:
 
 def suggest(ctx: dict) -> dict:
     states = cause_states(ctx)
-    by_id = {c["id"]: c for c in ctx["causes"]}
+    # by_id = {c["id"]: c for c in ctx["causes"]}
     live = [c for c in ctx["causes"] if states[c["id"]] != "ruled_out"]
     supported = [c for c in live if states[c["id"]] == "supported"]
     checks = {c["id"]: c for c in ctx["checks"]}
@@ -91,7 +91,9 @@ def suggest(ctx: dict) -> dict:
         top = ranked[:MAX_SUGGESTIONS]
         result["next_checks"] = [c["id"] for c in top]
         first = top[0]
-        target = max((c for c in pool if first["id"] in c["defining"]), key=lambda c: (c["weight"], c["id"]))
+        target = max(
+            (c for c in pool if first["id"] in c["defining"]), key=lambda c: (c["weight"], c["id"])
+        )
         if len(supported) > 1:
             intro = "Two causes are still supported by your readings, so look for a check that separates them."
         elif ctx["done"]:
@@ -105,7 +107,9 @@ def suggest(ctx: dict) -> dict:
 
     if len(ctx["done"]) >= ESCALATE_AFTER and result["leading_cause"] is None:
         result["escalate"] = True
-        result["message"] += " You have done many checks without a clear cause; consider escalating."
+        result["message"] += (
+            " You have done many checks without a clear cause; consider escalating."
+        )
 
     needs_isolation = [checks[k] for k in result["next_checks"] if checks[k]["isolation"]]
     if needs_isolation and not ctx["loto"]:
@@ -124,7 +128,9 @@ def mock_narrative(ctx: dict) -> dict:
     if parts["diagnosis"]:
         strengths.append("Reached the correct diagnosis.")
     else:
-        improvements.append("The diagnosis was wrong; compare the evidence gathered with the readings that rule causes out.")
+        improvements.append(
+            "The diagnosis was wrong; compare the evidence gathered with the readings that rule causes out."
+        )
     if parts["safety"] == weights["safety"]:
         strengths.append("No attempt to start an isolating check without lockout/tagout.")
     else:
@@ -142,7 +148,9 @@ def mock_narrative(ctx: dict) -> dict:
     if parts["evidence"] == weights["evidence"]:
         strengths.append("The diagnosis was backed by the deciding reading.")
     else:
-        improvements.append("The diagnosis was submitted without the deciding reading for that cause.")
+        improvements.append(
+            "The diagnosis was submitted without the deciding reading for that cause."
+        )
     outcome = "correct" if ctx["correct"] else "incorrect"
     summary = (
         f"The diagnosis was {outcome}. {facts['checks_performed']} check(s), {facts['actual_minutes']} "

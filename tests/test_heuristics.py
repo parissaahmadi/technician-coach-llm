@@ -45,7 +45,7 @@ def test_unique_supported_cause_becomes_the_leading_one():
 
 def test_all_causes_ruled_out_escalates():
     c = ctx_for("CASE-001", ["oil_level", "oil_filter_dp", "fan_motor"])
-    for chk in c["causes"]:
+    for _chk in c["causes"]:
         pass
     # rule out the rest by hand-made context (the seed cases always contain a real cause)
     c["done"] += [{"check": "cooler_fins", "result": "normal", "reading": "x"},
@@ -72,7 +72,11 @@ def test_two_supported_causes_ask_for_a_separating_check_when_one_exists():
                  {"check": "y", "result": "abnormal", "reading": ""}],
     }  # fmt: skip
     out = heuristics.suggest(ctx)
-    assert out["next_checks"] == ["z"] and "Two causes" in out["message"] and out["leading_cause"] is None
+    assert (
+        out["next_checks"] == ["z"]
+        and "Two causes" in out["message"]
+        and out["leading_cause"] is None
+    )
 
 
 def test_many_checks_without_a_lead_suggest_escalation():
@@ -85,7 +89,9 @@ def test_many_checks_without_a_lead_suggest_escalation():
 def test_lockout_warning_only_when_an_isolating_check_is_suggested_and_not_applied():
     out = heuristics.suggest(ctx_for("CASE-001", ["oil_level", "oil_filter_dp", "fan_motor"]))
     assert out["next_checks"][0] == "cooler_fins" and out["safety_warnings"]
-    out = heuristics.suggest(ctx_for("CASE-001", ["oil_level", "oil_filter_dp", "fan_motor"], loto=True))
+    out = heuristics.suggest(
+        ctx_for("CASE-001", ["oil_level", "oil_filter_dp", "fan_motor"], loto=True)
+    )
     assert out["safety_warnings"] == []
 
 
