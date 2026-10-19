@@ -1,0 +1,396 @@
+{
+ "asset_types": {
+  "compressor": {
+   "label": "Screw air compressor",
+   "safety": {
+    "loto": "Lock out and tag out the machine and release all stored energy before opening any guard, housing, line or filter.",
+    "extras": [
+     "Oil above 50 °C can cause burns: let it cool before opening the oil circuit.",
+     "Stored air pressure can throw parts: vent the receiver and the separator completely."
+    ]
+   },
+   "checks": {
+    "oil_level": {
+     "title": "Oil level in the sight glass",
+     "minutes": 2,
+     "isolation": false,
+     "how": "Read the level with the machine running at temperature."
+    },
+    "oil_filter_dp": {
+     "title": "Oil filter differential pressure",
+     "minutes": 2,
+     "isolation": false,
+     "how": "Read the differential gauge; compare with the nameplate limit."
+    },
+    "cooler_fins": {
+     "title": "Cooler fin condition",
+     "minutes": 6,
+     "isolation": true,
+     "how": "Open the cooler guard and inspect the fins with a lamp."
+    },
+    "fan_motor": {
+     "title": "Cooling fan rotation and motor current",
+     "minutes": 4,
+     "isolation": false,
+     "how": "Watch the fan start and compare the motor current with the nameplate."
+    },
+    "thermostatic_valve": {
+     "title": "Thermostatic valve operation",
+     "minutes": 25,
+     "isolation": true,
+     "how": "Remove the valve and test it in a water bath."
+    },
+    "intake_filter": {
+     "title": "Intake air filter indicator",
+     "minutes": 1,
+     "isolation": false,
+     "how": "Read the restriction indicator on the intake housing."
+    },
+    "separator_dp": {
+     "title": "Air/oil separator differential pressure",
+     "minutes": 2,
+     "isolation": false,
+     "how": "Read the differential gauge across the separator."
+    },
+    "inlet_valve": {
+     "title": "Inlet valve opening at load",
+     "minutes": 10,
+     "isolation": true,
+     "how": "Check that the valve opens fully when the machine loads."
+    },
+    "leak_check": {
+     "title": "Downstream air leak check",
+     "minutes": 15,
+     "isolation": false,
+     "how": "Soap-test fittings and hoses downstream of the machine while it runs."
+    }
+   },
+   "faults": {
+    "high_oil_temp": {
+     "title": "Oil temperature high",
+     "causes": [
+      {
+       "id": "clogged_cooler",
+       "label": "Cooler fins clogged with dust",
+       "weight": 35,
+       "defining": [
+        "cooler_fins"
+       ],
+       "fix": "Clean the cooler with dry air and a gentle wash; fit a pre-filter on the air inlet of the room."
+      },
+      {
+       "id": "fan_failure",
+       "label": "Cooling fan or fan motor failure",
+       "weight": 15,
+       "defining": [
+        "fan_motor"
+       ],
+       "fix": "Replace the fan motor or its capacitor and check the rotation direction."
+      },
+      {
+       "id": "stuck_thermostatic_valve",
+       "label": "Thermostatic valve stuck closed",
+       "weight": 15,
+       "defining": [
+        "thermostatic_valve"
+       ],
+       "fix": "Replace the thermostatic element and refill the oil."
+      },
+      {
+       "id": "low_oil_level",
+       "label": "Oil level too low",
+       "weight": 20,
+       "defining": [
+        "oil_level"
+       ],
+       "fix": "Top up with the specified oil and find the leak."
+      },
+      {
+       "id": "clogged_oil_filter",
+       "label": "Oil filter clogged",
+       "weight": 15,
+       "defining": [
+        "oil_filter_dp"
+       ],
+       "fix": "Replace the oil filter and the oil if it is past its interval."
+      }
+     ]
+    },
+    "low_output_pressure": {
+     "title": "Output pressure low under load",
+     "causes": [
+      {
+       "id": "clogged_intake_filter",
+       "label": "Intake air filter clogged",
+       "weight": 30,
+       "defining": [
+        "intake_filter"
+       ],
+       "fix": "Replace the intake filter element."
+      },
+      {
+       "id": "clogged_separator",
+       "label": "Air/oil separator clogged",
+       "weight": 25,
+       "defining": [
+        "separator_dp"
+       ],
+       "fix": "Replace the air/oil separator and the oil filter."
+      },
+      {
+       "id": "inlet_valve_stuck",
+       "label": "Inlet valve not opening fully",
+       "weight": 20,
+       "defining": [
+        "inlet_valve"
+       ],
+       "fix": "Overhaul or replace the inlet valve."
+      },
+      {
+       "id": "air_leak",
+       "label": "Air leak downstream of the machine",
+       "weight": 25,
+       "defining": [
+        "leak_check"
+       ],
+       "fix": "Repair the leaking fitting or hose."
+      }
+     ]
+    }
+   }
+  },
+  "pump": {
+   "label": "Centrifugal pump",
+   "safety": {
+    "loto": "Lock out and tag out the machine and release all stored energy before opening any guard, housing, line or filter.",
+    "extras": [
+     "Release the pressure and drain the casing before opening it; the liquid may be hot."
+    ]
+   },
+   "checks": {
+    "suction_valve": {
+     "title": "Suction valve position",
+     "minutes": 1,
+     "isolation": false,
+     "how": "Confirm the valve is fully open and the handle matches the stem."
+    },
+    "strainer": {
+     "title": "Suction strainer condition",
+     "minutes": 10,
+     "isolation": true,
+     "how": "Close the valves, drain and open the strainer basket."
+    },
+    "seal_inspect": {
+     "title": "Mechanical seal and gland",
+     "minutes": 8,
+     "isolation": true,
+     "how": "Inspect the seal faces and look for dripping at the gland."
+    },
+    "motor_rotation": {
+     "title": "Motor rotation direction and current",
+     "minutes": 3,
+     "isolation": false,
+     "how": "Compare the rotation with the arrow on the casing and read the current."
+    },
+    "vibration": {
+     "title": "Bearing vibration reading",
+     "minutes": 4,
+     "isolation": false,
+     "how": "Measure at both bearings with the vibration pen."
+    },
+    "discharge_pressure": {
+     "title": "Discharge pressure against the pump curve",
+     "minutes": 2,
+     "isolation": false,
+     "how": "Read the discharge gauge at the current flow and compare with the curve."
+    },
+    "impeller_inspect": {
+     "title": "Impeller wear",
+     "minutes": 45,
+     "isolation": true,
+     "how": "Open the casing and inspect the impeller and wear ring."
+    },
+    "alignment_check": {
+     "title": "Coupling alignment",
+     "minutes": 20,
+     "isolation": true,
+     "how": "Check the alignment with a dial indicator or laser tool."
+    }
+   },
+   "faults": {
+    "low_flow": {
+     "title": "Flow lower than normal",
+     "causes": [
+      {
+       "id": "closed_suction_valve",
+       "label": "Suction valve partly closed",
+       "weight": 20,
+       "defining": [
+        "suction_valve"
+       ],
+       "fix": "Open the valve fully and lock it in position."
+      },
+      {
+       "id": "clogged_strainer",
+       "label": "Suction strainer clogged",
+       "weight": 30,
+       "defining": [
+        "strainer"
+       ],
+       "fix": "Clean the strainer and find where the debris comes from."
+      },
+      {
+       "id": "worn_impeller",
+       "label": "Impeller worn",
+       "weight": 25,
+       "defining": [
+        "impeller_inspect"
+       ],
+       "fix": "Replace the impeller and the wear ring."
+      },
+      {
+       "id": "wrong_rotation",
+       "label": "Motor running in the wrong direction",
+       "weight": 10,
+       "defining": [
+        "motor_rotation"
+       ],
+       "fix": "Swap two phases and confirm the rotation."
+      }
+     ]
+    },
+    "high_vibration": {
+     "title": "Vibration high",
+     "causes": [
+      {
+       "id": "bearing_wear",
+       "label": "Bearing worn",
+       "weight": 40,
+       "defining": [
+        "vibration"
+       ],
+       "fix": "Replace both bearings and check the shaft."
+      },
+      {
+       "id": "misalignment",
+       "label": "Coupling misaligned",
+       "weight": 30,
+       "defining": [
+        "alignment_check"
+       ],
+       "fix": "Realign the coupling to the manufacturer's tolerance."
+      },
+      {
+       "id": "cavitation",
+       "label": "Cavitation from a blocked suction",
+       "weight": 30,
+       "defining": [
+        "strainer"
+       ],
+       "fix": "Clear the suction strainer and check the NPSH margin."
+      }
+     ]
+    }
+   }
+  },
+  "press": {
+   "label": "Hydraulic press",
+   "safety": {
+    "loto": "Lock out and tag out the machine and release all stored energy before opening any guard, housing, line or filter.",
+    "extras": [
+     "Lower the ram onto blocks and release hydraulic pressure before opening any hydraulic line."
+    ]
+   },
+   "checks": {
+    "tank_level": {
+     "title": "Hydraulic tank level",
+     "minutes": 2,
+     "isolation": false,
+     "how": "Read the level gauge with the ram retracted."
+    },
+    "return_filter": {
+     "title": "Return filter indicator",
+     "minutes": 3,
+     "isolation": false,
+     "how": "Read the clogging indicator while the pump runs."
+    },
+    "pump_pressure": {
+     "title": "Pump pressure at the relief setting",
+     "minutes": 5,
+     "isolation": false,
+     "how": "Dead-head the pump briefly and read the gauge."
+    },
+    "relief_valve": {
+     "title": "Relief valve setting",
+     "minutes": 30,
+     "isolation": true,
+     "how": "Remove the relief valve and bench-test it."
+    },
+    "cylinder_seal": {
+     "title": "Cylinder seal leakage",
+     "minutes": 40,
+     "isolation": true,
+     "how": "Block the ram, pressurise one side and watch for drift or leakage."
+    },
+    "oil_temp": {
+     "title": "Hydraulic oil temperature",
+     "minutes": 1,
+     "isolation": false,
+     "how": "Read the tank thermometer."
+    }
+   },
+   "faults": {
+    "slow_ram": {
+     "title": "Ram moves slowly",
+     "causes": [
+      {
+       "id": "low_tank_level",
+       "label": "Tank level too low",
+       "weight": 20,
+       "defining": [
+        "tank_level"
+       ],
+       "fix": "Top up with the specified oil and find the leak."
+      },
+      {
+       "id": "clogged_return_filter",
+       "label": "Return filter clogged",
+       "weight": 25,
+       "defining": [
+        "return_filter"
+       ],
+       "fix": "Replace the return filter element."
+      },
+      {
+       "id": "worn_hydraulic_pump",
+       "label": "Hydraulic pump worn",
+       "weight": 20,
+       "defining": [
+        "pump_pressure"
+       ],
+       "fix": "Overhaul or replace the pump."
+      },
+      {
+       "id": "relief_valve_creeping",
+       "label": "Relief valve opening too early",
+       "weight": 20,
+       "defining": [
+        "relief_valve"
+       ],
+       "fix": "Reset or replace the relief valve."
+      },
+      {
+       "id": "cylinder_seal_leak",
+       "label": "Cylinder seal leaking internally",
+       "weight": 15,
+       "defining": [
+        "cylinder_seal"
+       ],
+       "fix": "Replace the cylinder seals."
+      }
+     ]
+    }
+   }
+  }
+ }
+}
